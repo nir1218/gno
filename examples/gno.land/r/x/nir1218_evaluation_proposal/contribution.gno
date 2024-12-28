@@ -7,6 +7,7 @@ import (
 
 var contributionStatus = map[string]string{}
 
+// TODO: A contribution associated with a category
 type Contribution struct {
 	id               int
 	contributor      std.Address

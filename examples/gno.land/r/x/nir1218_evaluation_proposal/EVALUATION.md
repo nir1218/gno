@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This document describes general ideas regarding contributions evaluation. The principles laid out are intended to be part of the Evaluation DAO.
+This document describes general ideas regarding the evaluation of contributions. The principles outlined are intended to be part of a DAO.
 
 ## Contents
 
@@ -10,6 +10,7 @@ This document describes general ideas regarding contributions evaluation. The pr
 
   - [Committee](#committee)
   - [Evaluation](#evaluation)
+  - [Category](#category)
   - [Contribution](#contribution)
   - [Pull Request](#pull-request)
   - [Vote](#vote)
@@ -22,55 +23,60 @@ This document describes general ideas regarding contributions evaluation. The pr
 
 ### General Ideas
 
-Contributors DAO will designate members of a committee. In the beginning, the evaluation committee members will be the core development team members or any other trusted entity.
-A committee will be given the mandate to evaluate a certain set of contributions.
-For example, the first committee will evaluate code contributions inside Gno central repository.
-A contribution will be associated with a pull request managed in Git.
-A Committee as a trusted entity can decide on a category and its corresponding evaluation criteria.
-A member can propose to add a category and its corresponding evaluation criteria.
-A member can propose a contribution for evaluation. However, the pull request category must be from the list of approved categories.
-At the time of writing, a member can vote based on as set of options either "YES" or "NO", all members need to approve a category or a contribution.
+A DAO will designate members to serve on committees.
+Each committee will be given the mandate to evaluate a specific category of contributions.
+A committee, acting as a trusted entity, can decide on a category and its corresponding evaluation criteria.
+Any member can propose the addition of a new category and its associated evaluation criteria.
+Furthermore, any member can propose a contribution for evaluation.
+Currently, members can vote on proposals using a simple "YES" or "NO" system. However, unanimous approval from all members is required for the acceptance of any new category or contribution.
+
+For example, a committee will be established to evaluate code contributions within a repository.
+Contributions will be associated with pull requests managed within the Git repository.
+Crucially, each pull request must be associated with a category from the approved list, such as 'bounty,' 'chore,' 'defect,' or 'document'.
+Committee members could include core development team members or any other trusted entities within the DAO.
 
 ### Committee
 
-A group of designated members who are given a mandate to act as an evaluation authority.
-A DAO may elect a committee and designate its members based on contributions or merits of the members.
-A committee member can propose a contribution to avoid spam and confirm viable contributions will be evaluated.
+A committee is a group of designated members with the authority to evaluate proposals.
+A DAO may elect a committee, designating its members based on their contributions or merits within the community.
+Committee members may propose contributions. This helps to minimize spam and ensure that only viable proposals are considered for evaluation.
+Committee members may propose categories.
+
+#### Member
+
+A member is obligated to vote within the designated voting period.
+Members have the right and obligation to propose categories or contributions.
+The DAO may enforce a policy regarding uncommitted members. A member who is neither active nor cooperative may be disassociated from a committee.
 
 ### Evaluation
 
-A logical entity to group a certain types of contributions.
+An evaluation represents a logical grouping of all contributions assessed by a specific committee.
 
-#### Category
+### Category
 
-A group of contributions that should be evaluated based on the same principles and guide lines.
-An example of a category is a bounty, a chore, a defect, or a document.
+A category encompasses a group of contributions that should be evaluated according to the same principles and guidelines.
 
 ### Contribution
 
-A contribution is associated with a pull request.
 A contribution has an evaluation life cycle.
 A submission time is set when a contribution is added.
-A last evaluation time is set when a contribution is evaluated and approved by a member.
-An approval time is set when a contribution is approved by all members (or when a future threshold is reached)
+A last evaluation time is recorded when a contribution is evaluated and approved by a committee member.
+An approval time is set when a contribution is approved by all members (or when a future threshold is reached).
 
 #### Submission
 
-Any committee member can submit a contribution.
+Committee members are the sole individuals permitted to submit contributions or categories.
 
 #### Status
 
-When a contribution is submitted its status is set to "proposed", its status will change to "approved" once approved by the committee or to "declined" otherwise.
-Intermediate status options such as "negotiation", "discussion", "evaluation" are TBD.
-A further discussion around the idea of deleting a contribution is required as it raises questions regarding record keeping, double evaluations, and the motive.
+Upon submission, a contribution's or category's status is initially set to 'proposed.'
+Subsequently, its status will transition to 'approved' if it is approved by the committee, or to 'declined' otherwise.
+Intermediate status options, such as 'negotiation,' 'discussion,' and 'evaluation,' are currently to be determined (TBD).
 
 #### Approval
 
-A contribution is approved once it reaches a certain threshold.
-
-### Pull Request
-
-A pull request from a source control tool, namely GitHub.
+A category is approved when all committee members have given their approval.
+Currently, a contribution is approved either when all committee members have given their approval or, in the future, when it reaches a predetermined threshold.
 
 ### Vote
 
@@ -103,7 +109,6 @@ The current documentation describes the basic ideas as expressed in the code.
 Future improvements listed below will be decided based on future discussions and peer reviews.
 
 - Committee negotiates contributions
-FIXME Next line is unfinished:
 - A committee may set voting options for its categories and evaluated contributions, otherwise; the Contributors DAO may set a global
 - A committee may set a threshold required for a category or a contribution to be approved, otherwise; the Contributors DAO may set a global threshold and quorum.
 - A committee sets evaluation criteria scoring range (1-10), scoring a contribution is essential when there are competing contributions (Game of Realm). Otherwise, the evaluation is a binary decision. Moreover, scoring should be translated to rewards of any sort, or become discussion points durning negotiation about the viability of a contribution.
@@ -111,4 +116,4 @@ FIXME Next line is unfinished:
 
 ## Implementation
 
-The implementation written is to express the ideas described above using code. Not all ideas have been implemented.
+The implementation written aims to express the ideas described above using code. Not all ideas have been fully implemented.
