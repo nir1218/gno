@@ -12,8 +12,8 @@ This document describes general ideas regarding the evaluation of contributions.
   - [Evaluation](#evaluation)
   - [Category](#category)
   - [Contribution](#contribution)
-  - [Pull Request](#pull-request)
-  - [Vote](#vote)
+  - [Voting](#voting)
+  - [Rewarding](#rewarding)
 
 - [Future Improvements](#future-improvements)
 
@@ -62,6 +62,7 @@ A contribution has an evaluation life cycle.
 A submission time is set when a contribution is added.
 A last evaluation time is recorded when a contribution is evaluated and approved by a committee member.
 An approval time is set when a contribution is approved by all members (or when a future threshold is reached).
+Committee members assess contributions based on the evaluation criteria and vote accordingly.
 
 #### Submission
 
@@ -71,14 +72,15 @@ Committee members are the sole individuals permitted to submit contributions or 
 
 Upon submission, a contribution's or category's status is initially set to 'proposed.'
 Subsequently, its status will transition to 'approved' if it is approved by the committee, or to 'declined' otherwise.
-Intermediate status options, such as 'negotiation,' 'discussion,' and 'evaluation,' are currently to be determined (TBD).
+A committee may consider to add or remove status option.
+A committee may decide to add status options, such as 'negotiation,' 'discussion,' and 'evaluation' in the example given above.
 
 #### Approval
 
 A category is approved when all committee members have given their approval.
 Currently, a contribution is approved either when all committee members have given their approval or, in the future, when it reaches a predetermined threshold.
 
-### Vote
+### Voting
 
 #### Voters
 
@@ -87,7 +89,7 @@ Voters are committee members, all committee members have the right and obligatio
 #### Voting Options
 
 The voting options available to a voter.
-A committee may set voting options for its evaluation categories.
+A committee may set voting options for its categories and evaluated contributions, otherwise; the DAO may set a global voting options.
 The initial option set includes the following options:
 
 - `YES`
@@ -100,20 +102,41 @@ Voting period is set by the committee, all committee members are obligated to vo
 #### Threshold
 
 Threshold is the minimum percentage of `YES` votes from the total votes.
+A committee may set a threshold required for a category or a contribution to be approved, otherwise; the DAO may set a global threshold.
 
 #### Tally Votes
+
+TBD
+
+#### Quorum
+
+A committee may set the specific quorum requirement. The DAO may set a global quorum.
+
+## Rewarding
+
+A committee may decide the means to contribution rewards and the viability of a contribution.
 
 ## Future Improvements
 
 The current documentation describes the basic ideas as expressed in the code.
 Future improvements listed below will be decided based on future discussions and peer reviews.
 
-- Committee negotiates contributions
-- A committee may set voting options for its categories and evaluated contributions, otherwise; the Contributors DAO may set a global
-- A committee may set a threshold required for a category or a contribution to be approved, otherwise; the Contributors DAO may set a global threshold and quorum.
-- A committee sets evaluation criteria scoring range (1-10), scoring a contribution is essential when there are competing contributions (Game of Realm). Otherwise, the evaluation is a binary decision. Moreover, scoring should be translated to rewards of any sort, or become discussion points durning negotiation about the viability of a contribution.
-- Committee members assess contributions based on the evaluation criteria and vote accordingly.
-
 ## Implementation
 
 The implementation written aims to express the ideas described above using code. Not all ideas have been fully implemented.
+
+## Examples
+
+### Criteria & Evaluation Points
+
+A committee sets evaluation criteria scoring range (1-10), scoring a contribution is essential when there are competing contributions, [see example](#criteria--evaluation-points).
+
+A committee decides to reward a contribution based on a percentage of a token, where for each criterion, the percentage of a token is multiplied by the total evaluation points received by the contribution from the committee.
+
+| Criteria          | Evaluation Points | Description                                                                         |
+| ----------------- | ----------------- | ----------------------------------------------------------------------------------- |
+| **Code Quality**  | 1-10              | Cleanliness, readability, and maintainability of the code.                          |
+| **Functionality** | 1-10              | Whether the code meets the specified requirements and produces the expected output. |
+| **Efficiency**    | 1-10              | Resource usage (memory, CPU) and speed of execution.                                |
+| **Testing**       | 1-10              | Coverage and effectiveness of unit tests.                                           |
+| **Documentation** | 1-10              | Clarity and completeness of comments and documentation.                             |
