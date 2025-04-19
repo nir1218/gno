@@ -28,12 +28,6 @@ Each committee will be given the mandate to evaluate a specific category of cont
 A committee, acting as a trusted entity, can decide on a category and its corresponding evaluation criteria.
 Any member can propose the addition of a new category and its associated evaluation criteria.
 Furthermore, any member can propose a contribution for evaluation.
-Currently, members can vote on proposals using a simple "YES" or "NO" system. However, unanimous approval from all members is required for the acceptance of any new category or contribution.
-
-For example, a committee will be established to evaluate code contributions within a repository.
-Contributions will be associated with pull requests managed within the Git repository.
-Crucially, each pull request must be associated with a category from the approved list, such as 'bounty,' 'chore,' 'defect,' or 'document'.
-Committee members could include core development team members or any other trusted entities within the DAO.
 
 ### Committee
 
@@ -47,6 +41,7 @@ Committee members may propose categories.
 A member is obligated to vote within the designated voting period.
 Members have the right and obligation to propose categories or contributions.
 The DAO may enforce a policy regarding uncommitted members. A member who is neither active nor cooperative may be disassociated from a committee.
+TODO: How to track uncommitted members?
 
 ### Evaluation
 
@@ -90,7 +85,7 @@ Voters are committee members, all committee members have the right and obligatio
 
 The voting options available to a voter.
 A committee may set voting options for its categories and evaluated contributions, otherwise; the DAO may set a global voting options.
-The initial option set includes the following options:
+The initial global voting options set includes the following options:
 
 - `YES`
 - `NO`
@@ -127,16 +122,70 @@ The implementation written aims to express the ideas described above using code.
 
 ## Examples
 
-### Criteria & Evaluation Points
+### Code Contribution Evaluation Process
 
-A committee sets evaluation criteria scoring range (1-10), scoring a contribution is essential when there are competing contributions, [see example](#criteria--evaluation-points).
+A committee will evaluate code contributions within this repository. Committee members may include core development team members or other trusted DAO entities.
 
-A committee decides to reward a contribution based on a percentage of a token, where for each criterion, the percentage of a token is multiplied by the total evaluation points received by the contribution from the committee.
+To ensure consistent evaluation, code contributions will be categorized (e.g., "bounty," "chore," "defect," "feature"). Contributions within the same category will be evaluated using the same criteria. The committee will define and maintain the list of contribution categories.
 
-| Criteria          | Evaluation Points | Description                                                                         |
-| ----------------- | ----------------- | ----------------------------------------------------------------------------------- |
-| **Code Quality**  | 1-10              | Cleanliness, readability, and maintainability of the code.                          |
-| **Functionality** | 1-10              | Whether the code meets the specified requirements and produces the expected output. |
-| **Efficiency**    | 1-10              | Resource usage (memory, CPU) and speed of execution.                                |
-| **Testing**       | 1-10              | Coverage and effectiveness of unit tests.                                           |
-| **Documentation** | 1-10              | Clarity and completeness of comments and documentation.                             |
+All contributions will be associated with a pull request (PR) managed within the Git repository.
+
+#### Feature Contribution Evaluation
+
+For feature contributions, the committee will establish evaluation criteria and a scoring range (1-10) for each criterion. This scoring system is essential for comparing competing contributions.
+
+The committee will determine weighting factors (wᵢ) for each criterion (where i ranges from 1 to n, the total number of criteria). These weights represent the relative importance of each criterion and must sum to 1 (or 100%).
+
+Each committee member (j) will evaluate a feature contribution by assigning a score (sᵢⱼ) for each criterion (i). These scores must be within the 1-10 range.
+
+To combine the scores from multiple evaluators (m), we will first calculate the _average score_ (sᵢ) for each criterion:
+
+sᵢ = (1/m) \* ∑ⱼ sᵢⱼ for j = 1 to m
+
+Then, the weighted score (S) for a contribution will be calculated using the following formula:
+
+S = ∑ᵢ (sᵢ \* wᵢ) for i = 1 to n
+
+Where:
+
+- n: Number of criteria
+- sᵢ: Average score for the i-th criterion
+- wᵢ: Weight (factor) assigned to the i-th criterion
+
+This can be expanded as:
+
+S = s₁w₁ + s₂w₂ + s₃w₃ + ... + sₙwₙ
+
+**Criteria and Weights:**
+
+| Criteria      | Evaluation Points | Description                                                                         | Weight (wᵢ) |
+| ------------- | ----------------- | ----------------------------------------------------------------------------------- | ----------- |
+| Code Quality  | 1-10              | Cleanliness, readability, and maintainability of the code.                          | 0.2         |
+| Functionality | 1-10              | Whether the code meets the specified requirements and produces the expected output. | 0.3         |
+| Efficiency    | 1-10              | Resource usage (memory, CPU) and speed of execution.                                | 0.2         |
+| Testing       | 1-10              | Coverage and effectiveness of unit tests.                                           | 0.15        |
+| Documentation | 1-10              | Clarity and completeness of comments and documentation.                             | 0.15        |
+
+**Example with Multiple Evaluators:**
+
+Let's assume three committee members evaluate a contribution and assign the following scores:
+
+| Criteria      | Member 1 (sᵢ₁) | Member 2 (sᵢ₂) | Member 3 (sᵢ₃) | Average Score (sᵢ) |
+| ------------- | -------------- | -------------- | -------------- | ------------------ |
+| Code Quality  | 8              | 7              | 9              | 8                  |
+| Functionality | 9              | 8              | 10             | 9                  |
+| Efficiency    | 7              | 6              | 8              | 7                  |
+| Testing       | 10             | 9              | 9              | 9.33               |
+| Documentation | 6              | 5              | 7              | 6                  |
+
+The weighted score (S) is calculated as:
+
+S = (8 _ 0.2) + (9 _ 0.3) + (7 _ 0.2) + (9.33 _ 0.15) + (6 \* 0.15)
+S = 1.6 + 2.7 + 1.4 + 1.4 + 0.9
+S = 8.0
+
+This weighted score will be used to determine the reward for the contribution (the specific reward mechanism should be defined elsewhere).
+
+#### Other Contribution Categories
+
+The evaluation process for other contribution categories (e.g., "bounty," "chore," "defect") will be defined separately by the committee, but may follow a similar weighted scoring approach.
